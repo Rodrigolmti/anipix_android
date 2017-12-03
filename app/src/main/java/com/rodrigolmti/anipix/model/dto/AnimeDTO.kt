@@ -2,6 +2,7 @@ package com.rodrigolmti.anipix.model.dto
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created by rodrigo on 12/3/17.
@@ -23,4 +24,4 @@ class AnimeDTO(
         val sinopse: String,
         @Expose
         val categorias: String
-)
+) : Serializable

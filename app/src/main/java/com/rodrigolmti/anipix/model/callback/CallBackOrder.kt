@@ -1,4 +1,4 @@
-package com.rodrigolmti.anipix.model.utils
+package com.rodrigolmti.anipix.model.callback
 
 import com.rodrigolmti.anipix.model.dto.OrderDTO
 
@@ -6,7 +6,7 @@ import com.rodrigolmti.anipix.model.dto.OrderDTO
  * Created by rodrigo on 12/3/17.
  * At Framework System
  */
-interface CallBackOrders {
+interface CallBackOrder {
 
     fun onSuccessGetOrders(orders: List<OrderDTO>)
     fun onErrorGetOrders()

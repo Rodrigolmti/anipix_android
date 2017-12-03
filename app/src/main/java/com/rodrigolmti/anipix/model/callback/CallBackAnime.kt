@@ -1,4 +1,4 @@
-package com.rodrigolmti.anipix.model.utils
+package com.rodrigolmti.anipix.model.callback
 
 import com.rodrigolmti.anipix.model.dto.AnimeDTO
 

@@ -6,11 +6,10 @@ import android.support.v7.widget.LinearLayoutManager
 import com.rodrigolmti.anipix.R
 import com.rodrigolmti.anipix.model.dto.AnimeDTO
 import com.rodrigolmti.anipix.model.service.AnipixService
-import com.rodrigolmti.anipix.model.utils.CallBackAnime
+import com.rodrigolmti.anipix.model.callback.CallBackAnime
 import com.rodrigolmti.anipix.model.utils.gone
 import com.rodrigolmti.anipix.model.utils.visible
 import com.rodrigolmti.anipix.view.adapter.AnimeSearchAdapter
-import com.rodrigolmti.anipix.view.adapter.OrderAnimeAdapter
 import com.rodrigolmti.library.controller.view.BaseActivity
 import kotlinx.android.synthetic.main.activity_anime_search_result.*
 
@@ -39,8 +38,10 @@ class AnimeSearchResultActivity : BaseActivity(), CallBackAnime {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.hasFixedSize()
         recyclerView.adapter = AnimeSearchAdapter(this, animes, object : AnimeSearchAdapter.OnItemClick {
-            override fun onItemClick(position: Int) {
-
+            override fun onItemClick(anime: AnimeDTO) {
+                val intent = Intent(this@AnimeSearchResultActivity, AnimeDetailActivity::class.java)
+                intent.putExtra("action.item", anime)
+                startActivity(intent)
             }
         })
     }

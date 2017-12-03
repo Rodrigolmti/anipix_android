@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.rodrigolmti.anipix.R
 import com.rodrigolmti.anipix.model.dto.OrderDTO
 import com.rodrigolmti.anipix.model.service.AnipixService
-import com.rodrigolmti.anipix.model.utils.CallBackOrders
+import com.rodrigolmti.anipix.model.callback.CallBackOrder
 import com.rodrigolmti.anipix.model.utils.gone
 import com.rodrigolmti.anipix.model.utils.visible
 import com.rodrigolmti.anipix.view.activity.AnimeSearchResultActivity
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_animes.view.*
  * Created by rodrigo on 12/3/17.
  * At Framework System
  */
-class AnimesFragment : BaseFragment(), CallBackOrders {
+class AnimesFragment : BaseFragment(), CallBackOrder {
 
     private lateinit var viewFragment: View
 

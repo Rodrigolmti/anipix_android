@@ -1,8 +1,6 @@
 package com.rodrigolmti.anipix.model.api
 
-import com.rodrigolmti.anipix.model.dto.AnimeDTO
-import com.rodrigolmti.anipix.model.dto.BaseResponseDTO
-import com.rodrigolmti.anipix.model.dto.OrderDTO
+import com.rodrigolmti.anipix.model.dto.*
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -17,10 +15,15 @@ interface AnipixAPI {
     @GET("orderList")
     fun getOrderList(@Header("token") token: String): Observable<BaseResponseDTO<OrderDTO>>
 
-    @GET("animeByOrder")
+    @GET("animeByOrderId")
     fun getAnimeByOrderId(@Header("token") token: String, @Query("orderId") orderId: String):
             Observable<BaseResponseDTO<AnimeDTO>>
 
-    @GET("orderList")
-    fun getEpisodeByAnimeId(@Header("token") token: String): Observable<BaseResponseDTO<AnimeDTO>>
+    @GET("episodeByAnimeId")
+    fun getEpisodeByAnimeId(@Header("token") token: String, @Query("animeId") animeId: String):
+            Observable<BaseResponseDTO<EpisodeDTO>>
+
+    @GET("episodeLinkByEpisodeId")
+    fun getEpisodeLinkByEpisodeId(@Header("token") token: String, @Query("episodeId") episodeId: String):
+            Observable<ResponseLinkDTO<EpisodeLinkDTO>>
 }

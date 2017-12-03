@@ -18,7 +18,7 @@ class AnimeSearchAdapter(private val context: Context, private val animes: List<
                          private val listener: OnItemClick) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as ItemViewHolder).bindData(animes[position], position, listener)
+        (holder as ItemViewHolder).bindData(animes[position], listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
@@ -30,14 +30,14 @@ class AnimeSearchAdapter(private val context: Context, private val animes: List<
     }
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindData(anime: AnimeDTO, position: Int, listener: OnItemClick) {
-            itemView.setOnClickListener { listener.onItemClick(position) }
+        fun bindData(anime: AnimeDTO, listener: OnItemClick) {
+            itemView.setOnClickListener { listener.onItemClick(anime) }
             itemView.textViewAnimeName.text = anime.nome
             itemView.imageViewAnime.setImageURI(Uri.parse(anime.imagem))
         }
     }
 
     interface OnItemClick {
-        fun onItemClick(position: Int)
+        fun onItemClick(anime: AnimeDTO)
     }
 }
