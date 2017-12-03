@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_search"
+        icon="@drawable/ic_action_search"
+        title="Pesquisar" />
+    <tab
+        id="@+id/tab_animes"
+        icon="@drawable/ic_action_movie"
+        title="Animes" />
+    <tab
+        id="@+id/tab_info"
+        icon="@drawable/ic_action_info"
+        title="Informações" />
+</tabs>
