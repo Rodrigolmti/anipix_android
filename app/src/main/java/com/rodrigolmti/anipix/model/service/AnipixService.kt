@@ -28,6 +28,9 @@ class AnipixService(private val context: Context) {
                             callback.onSuccessGetOrders(data.data)
                         else
                             callback.onErrorGetOrders()
+                    }, { error ->
+                        callback.onErrorGetOrders()
+                        error.printStackTrace()
                     })
         } catch (error: Exception) {
             callback.onErrorGetOrders()
@@ -45,6 +48,29 @@ class AnipixService(private val context: Context) {
                             callback.onSuccessGetAnimes(data.data)
                         else
                             callback.onErrorGetAnimes()
+                    }, { error ->
+                        callback.onErrorGetAnimes()
+                        error.printStackTrace()
+                    })
+        } catch (error: Exception) {
+            callback.onErrorGetAnimes()
+        }
+    }
+
+    fun getAnimeByName(callback: CallBackAnime, name: String) {
+        try {
+            RetrofitService().retrofitInstance(context.getString(R.string.base_url))
+                    .create(AnipixAPI::class.java).getAnimeByName("", name)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ data ->
+                        if (data.success)
+                            callback.onSuccessGetAnimes(data.data)
+                        else
+                            callback.onErrorGetAnimes()
+                    }, { error ->
+                        callback.onErrorGetAnimes()
+                        error.printStackTrace()
                     })
         } catch (error: Exception) {
             callback.onErrorGetAnimes()
@@ -62,6 +88,9 @@ class AnipixService(private val context: Context) {
                             callback.onSuccessGetEpisodes(data.data)
                         else
                             callback.onErrorGetEpisodes()
+                    }, { error ->
+                        callback.onErrorGetEpisodes()
+                        error.printStackTrace()
                     })
         } catch (error: Exception) {
             callback.onErrorGetEpisodes()
@@ -79,6 +108,9 @@ class AnipixService(private val context: Context) {
                             callback.onSuccessGetLinks(data.data)
                         else
                             callback.onErrorGetLinks()
+                    }, { error ->
+                        callback.onErrorGetLinks()
+                        error.printStackTrace()
                     })
         } catch (error: Exception) {
             callback.onErrorGetLinks()

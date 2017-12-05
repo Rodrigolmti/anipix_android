@@ -19,6 +19,10 @@ interface AnipixAPI {
     fun getAnimeByOrderId(@Header("token") token: String, @Query("orderId") orderId: String):
             Observable<BaseResponseDTO<AnimeDTO>>
 
+    @GET("animeByName")
+    fun getAnimeByName(@Header("token") token: String, @Query("animeName") animeName: String):
+            Observable<BaseResponseDTO<AnimeDTO>>
+
     @GET("episodeByAnimeId")
     fun getEpisodeByAnimeId(@Header("token") token: String, @Query("animeId") animeId: String):
             Observable<BaseResponseDTO<EpisodeDTO>>

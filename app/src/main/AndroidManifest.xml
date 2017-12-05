@@ -19,9 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.AnimeSearchResultActivity" />
+        <activity
+            android:name=".view.activity.AnimeSearchResultActivity"
+            android:theme="@style/AppThemeNoBar" />
         <activity android:name=".view.activity.AnimeDetailActivity" />
-        <activity android:name=".view.activity.EpisodeActivity"></activity>
+        <activity android:name=".view.activity.EpisodeActivity" />
     </application>
 
 </manifest>
