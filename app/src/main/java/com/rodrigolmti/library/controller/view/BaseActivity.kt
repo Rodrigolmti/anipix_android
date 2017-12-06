@@ -27,6 +27,12 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    protected fun hideSupportActionBar() {
+        supportActionBar?.let {
+            supportActionBar!!.hide()
+        }
+    }
+
     protected fun enableBackButton() {
         supportActionBar?.let {
             supportActionBar!!.setHomeButtonEnabled(true)

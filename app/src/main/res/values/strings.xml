@@ -8,8 +8,8 @@
         <item>E</item>
         <item>F</item>
         <item>G</item>
-        <item>H</item>
         <item>I</item>
+        <item>H</item>
         <item>J</item>
         <item>K</item>
         <item>L</item>
@@ -23,10 +23,10 @@
         <item>T</item>
         <item>U</item>
         <item>V</item>
+        <item>W</item>
         <item>X</item>
+        <item>Y</item>
+        <item>Z</item>
     </array>
-    <string name="base_url">http://192.168.0.103:3000/api/v1/</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="base_url">http://67.205.185.235:3001/api/v1/</string>
 </resources>

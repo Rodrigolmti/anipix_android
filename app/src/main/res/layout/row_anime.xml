@@ -11,10 +11,10 @@
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/imageViewAnime"
         android:layout_width="80dp"
-        android:layout_margin="1dp"
-        android:layout_height="80dp" />
+        android:layout_height="80dp"
+        android:layout_margin="1dp" />
 
-    <TextView
+    <com.rodrigolmti.anipix.view.custom.TextViewMedium
         android:id="@+id/textViewAnimeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

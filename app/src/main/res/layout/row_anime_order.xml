@@ -6,7 +6,7 @@
     android:background="?attr/selectableItemBackgroundBorderless"
     android:orientation="vertical">
 
-    <TextView
+    <com.rodrigolmti.anipix.view.custom.TextViewRegular
         android:id="@+id/textViewOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

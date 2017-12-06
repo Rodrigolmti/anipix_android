@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <com.rodrigolmti.anipix.view.custom.TextViewRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="Episodio: "
             android:textSize="16sp" />
 
-        <TextView
+        <com.rodrigolmti.anipix.view.custom.TextViewMedium
             android:id="@+id/textViewEpisodeNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -24,6 +24,8 @@ import android.text.Editable
  */
 class AnimeSearchResultActivity : BaseActivity(), CallBackAnime {
 
+    private lateinit var animesList: List<AnimeDTO>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anime_search_result)
@@ -58,6 +60,9 @@ class AnimeSearchResultActivity : BaseActivity(), CallBackAnime {
 
     override fun onSuccessGetAnimes(animes: List<AnimeDTO>) {
         contentLoading.gone()
+
+        animesList = animes
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.hasFixedSize()
         recyclerView.adapter = AnimeSearchAdapter(this, animes, object : AnimeSearchAdapter.OnItemClick {

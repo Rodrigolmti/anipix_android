@@ -49,4 +49,7 @@ dependencies {
 
     // Fresco Lib
     compile 'com.facebook.fresco:fresco:1.5.0'
+
+    // Better Video Player
+    compile 'com.github.halilozercan:BetterVideoPlayer:1.1.0'
 }

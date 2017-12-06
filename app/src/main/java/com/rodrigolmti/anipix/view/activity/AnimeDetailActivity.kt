@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import com.rodrigolmti.anipix.R
 import com.rodrigolmti.anipix.model.callback.CallBackEpisode
 import com.rodrigolmti.anipix.model.dto.AnimeDTO
@@ -24,16 +26,25 @@ class AnimeDetailActivity : BaseActivity(), CallBackEpisode {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anime_detail)
+        setSupportActionBar(toolbar)
         enableBackButton()
         if (intent.hasExtra("action.item")) {
             val anime = intent.getSerializableExtra("action.item") as AnimeDTO
             imageViewAnime.setImageURI(Uri.parse(anime.imagem))
             title = anime.nome
+            textViewSinopse.text = anime.sinopse
+            textViewAno.text = anime.ano
+            textViewCategorias.text = anime.categorias
             contentLoading.visible()
             kotlin.run {
                 AnipixService(this).getEpisodeByAnimeId(this, anime.id)
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_activity_anime_detail, menu)
+        return true
     }
 
     override fun onSuccessGetEpisodes(episodes: List<EpisodeDTO>) {

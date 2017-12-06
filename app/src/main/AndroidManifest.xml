@@ -22,8 +22,12 @@
         <activity
             android:name=".view.activity.AnimeSearchResultActivity"
             android:theme="@style/AppThemeNoBar" />
-        <activity android:name=".view.activity.AnimeDetailActivity" />
-        <activity android:name=".view.activity.EpisodeActivity" />
+        <activity
+            android:name=".view.activity.AnimeDetailActivity"
+            android:theme="@style/AppThemeNoBar" />
+        <activity
+            android:name=".view.activity.EpisodeActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout|screenSize" />
     </application>
 
 </manifest>
