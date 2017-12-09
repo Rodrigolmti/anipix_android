@@ -8,8 +8,8 @@
         <item>E</item>
         <item>F</item>
         <item>G</item>
-        <item>I</item>
         <item>H</item>
+        <item>I</item>
         <item>J</item>
         <item>K</item>
         <item>L</item>
@@ -28,5 +28,14 @@
         <item>Y</item>
         <item>Z</item>
     </array>
-    <string name="base_url">http://67.205.185.235:3001/api/v1/</string>
+    <!--<string name="base_url">http://67.205.185.235:3001/api/v1/</string>-->
+    <string name="base_url">http://192.168.0.103:3001/api/v1/</string>
+    <string name="episodio">Episodio:</string>
+    <string name="sinopse">Sinopse:</string>
+    <string name="ano">Ano:</string>
+    <string name="categorias">Categorias:</string>
+    <string name="selecione_um_player">Selecione um player</string>
+    <string name="favoritar">Favoritar</string>
+    <string name="desfavoritar">Desfavoritar</string>
+    <string name="pesquise_por_aqui">Pesquise por aqui</string>
 </resources>

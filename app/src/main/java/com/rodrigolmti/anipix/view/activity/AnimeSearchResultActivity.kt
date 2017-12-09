@@ -60,6 +60,7 @@ class AnimeSearchResultActivity : BaseActivity(), CallBackAnime {
 
     override fun onSuccessGetAnimes(animes: List<AnimeDTO>) {
         contentLoading.gone()
+        progressBar.gone()
 
         animesList = animes
 
@@ -75,5 +76,6 @@ class AnimeSearchResultActivity : BaseActivity(), CallBackAnime {
     }
 
     override fun onErrorGetAnimes() {
+        progressBar.gone()
     }
 }

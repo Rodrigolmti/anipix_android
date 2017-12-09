@@ -47,8 +47,17 @@ class EpisodeActivity : BaseActivity(), CallBackEpisodeLink, BetterVideoCallback
     override fun onSuccessGetLinks(episode: EpisodeLinkDTO) {
         contentLoading.gone()
         player.setCallback(this)
-        player.setSource(Uri.parse(episode.link1))
-        player.start()
+        val link: Uri
+        if (intent.hasExtra("action.item.link")) {
+            val linkNumber = intent.getIntExtra("action.item.link", 0)
+            link = when (linkNumber) {
+                0 -> Uri.parse(episode.link1)
+                1 -> Uri.parse(episode.link2)
+                else -> Uri.parse(episode.link1)
+            }
+            player.setSource(link)
+            player.start()
+        }
     }
 
     override fun onErrorGetLinks() {

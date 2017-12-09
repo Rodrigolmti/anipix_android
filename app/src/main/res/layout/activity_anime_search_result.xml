@@ -33,9 +33,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Anipix"
+                    android:text="@string/app_name"
                     android:textColor="@color/colorAccent"
-                    android:textSize="22sp" />
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
@@ -62,7 +63,7 @@
                         android:drawableStart="@drawable/ic_action_search"
                         android:drawableTint="@color/colorPrimary"
                         android:gravity="center_vertical"
-                        android:hint="Pesquide por aqui"
+                        android:hint="@string/pesquise_por_aqui"
                         android:imeOptions="actionSearch"
                         android:inputType="text"
                         android:nextFocusDown="@+id/bt_search_cod_bar"
@@ -75,12 +76,14 @@
                         android:layout_height="28dp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerVertical="true"
+                        android:indeterminateTint="@color/colorPrimary"
+                        android:indeterminateTintMode="src_atop"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
             </RelativeLayout>
-
 
         </LinearLayout>
 

@@ -23,5 +23,6 @@ class AnimeDTO(
         @Expose
         val sinopse: String,
         @Expose
-        val categorias: String
+        val categorias: String,
+        var favorite: Boolean
 ) : Serializable
