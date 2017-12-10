@@ -32,6 +32,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+    // Google AdMob
+    compile 'com.google.android.gms:play-services-ads:11.6.2'
+
     // Bottom bar
     compile 'com.roughike:bottom-bar:2.3.1'
 

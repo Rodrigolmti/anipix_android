@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs>
     <tab
+        icon="@drawable/ic_action_updates"
+        id="@+id/tab_updates"
+        title="Atualizações" />
+    <tab
         icon="@drawable/ic_action_movie"
         id="@+id/tab_animes"
         title="Animes" />

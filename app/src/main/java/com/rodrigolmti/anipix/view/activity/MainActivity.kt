@@ -8,6 +8,7 @@ import com.rodrigolmti.anipix.R
 import com.rodrigolmti.anipix.view.fragment.AnimesFragment
 import com.rodrigolmti.anipix.view.fragment.FavoriteFragment
 import com.rodrigolmti.anipix.view.fragment.InfoFragment
+import com.rodrigolmti.anipix.view.fragment.UpdatesFragment
 import com.rodrigolmti.library.controller.view.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.bottomBar
 
@@ -21,6 +22,11 @@ class MainActivity : BaseActivity() {
 
         bottomBar.setOnTabSelectListener { tabId ->
             when (tabId) {
+                R.id.tab_updates -> {
+                    invalidateOptionsMenu()
+                    changeFragment(UpdatesFragment.newInstance())
+                    title = "Atualizações"
+                }
                 R.id.tab_animes -> {
                     invalidateOptionsMenu()
                     if (navigation != null) {

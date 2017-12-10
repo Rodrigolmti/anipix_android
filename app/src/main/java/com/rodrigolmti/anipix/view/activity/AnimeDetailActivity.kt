@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import com.google.android.gms.ads.AdRequest
 import com.rodrigolmti.anipix.R
 import com.rodrigolmti.anipix.R.string
 import com.rodrigolmti.anipix.model.callback.CallBackEpisode
@@ -25,12 +26,13 @@ import kotlinx.android.synthetic.main.activity_anime_detail.textViewAno
 import kotlinx.android.synthetic.main.activity_anime_detail.textViewCategorias
 import kotlinx.android.synthetic.main.activity_anime_detail.textViewSinopse
 import kotlinx.android.synthetic.main.activity_anime_detail.toolbar
+import kotlinx.android.synthetic.main.activity_anime_search_result.adView
 
 /**
  * Created by rodrigo on 12/3/17.
  * At Framework System
  */
-class AnimeDetailActivity : BaseActivity(), CallBackEpisode {
+    class AnimeDetailActivity : BaseActivity(), CallBackEpisode {
 
     private lateinit var anime: AnimeDTO
     private var menu: Menu? = null
@@ -40,12 +42,14 @@ class AnimeDetailActivity : BaseActivity(), CallBackEpisode {
         setContentView(R.layout.activity_anime_detail)
         setSupportActionBar(toolbar)
         enableBackButton()
+        initAd()
         if (intent.hasExtra("action.item")) {
             anime = intent.getSerializableExtra("action.item") as AnimeDTO
             imageViewAnime.setImageURI(Uri.parse(anime.imagem))
             anime.favorite = FavoriteController.onCheckIsFavorite(anime)
             title = anime.nome
             textViewSinopse.text = anime.sinopse
+                    .replace("Sinopse: ", "")
             textViewAno.text = anime.ano
             textViewCategorias.text = anime.categorias
             contentLoading.visible()
@@ -104,5 +108,12 @@ class AnimeDetailActivity : BaseActivity(), CallBackEpisode {
     }
 
     override fun onErrorGetEpisodes() {
+    }
+
+    private fun initAd() {
+        val adRequest = AdRequest.Builder()
+                .addTestDevice(getString(string.ad_device_one_plus))
+                .build()
+        adView.loadAd(adRequest)
     }
 }

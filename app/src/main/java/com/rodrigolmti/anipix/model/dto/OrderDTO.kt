@@ -12,5 +12,5 @@ class OrderDTO(
         @SerializedName("_id")
         val id: String,
         @Expose
-        val order: String
+        val word: String
 )

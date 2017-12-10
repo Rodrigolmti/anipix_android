@@ -120,14 +120,27 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+                android:layout_marginBottom="100dp"
+                android:layout_marginTop="10dp"
+                android:nestedScrollingEnabled="false" />
 
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-4643315836358341/4697555504" />
+
     <include
         android:id="@+id/contentLoading"
-        layout="@layout/layout_loading" />
+        layout="@layout/layout_loading"
+        android:visibility="gone" />
 
 </android.support.design.widget.CoordinatorLayout>

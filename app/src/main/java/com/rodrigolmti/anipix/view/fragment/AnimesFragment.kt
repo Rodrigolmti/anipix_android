@@ -10,6 +10,7 @@ import com.rodrigolmti.anipix.R
 import com.rodrigolmti.anipix.model.dto.OrderDTO
 import com.rodrigolmti.anipix.model.service.AnipixService
 import com.rodrigolmti.anipix.model.callback.CallBackOrder
+import com.rodrigolmti.anipix.model.dao.OrderDAO
 import com.rodrigolmti.anipix.model.utils.gone
 import com.rodrigolmti.anipix.model.utils.visible
 import com.rodrigolmti.anipix.view.activity.AnimeSearchResultActivity
@@ -30,30 +31,38 @@ class AnimesFragment : BaseFragment(), CallBackOrder {
         viewFragment = inflater!!.inflate(R.layout.fragment_animes, container, false)
 
         viewFragment.contentLoading.visible()
-        kotlin.run {
-            AnipixService(activity).getOrderList(this)
+        if (OrderDAO.getOrders().isEmpty()) {
+            kotlin.run {
+                AnipixService(activity).getOrderList(this)
+            }
+        } else {
+            loadData(OrderDAO.getOrders())
         }
 
         return viewFragment
     }
 
     override fun onSuccessGetOrders(orders: List<OrderDTO>) {
+        OrderDAO.saveOrders(orders)
+        loadData(orders)
+    }
+
+    override fun onErrorGetOrders() {
         viewFragment.contentLoading.gone()
+    }
+
+    private fun loadData(orders: List<OrderDTO>) {
         viewFragment.recyclerView.layoutManager = LinearLayoutManager(activity)
         viewFragment.recyclerView.hasFixedSize()
-        val ordersString = resources.getStringArray(R.array.anime_order)
-        viewFragment.recyclerView.adapter = OrderAnimeAdapter(activity, ordersString, object : OnItemClick {
-            override fun onItemClick(position: Int) {
+        viewFragment.recyclerView.adapter = OrderAnimeAdapter(activity, orders, object : OnItemClick {
+            override fun onItemClick(item: OrderDTO) {
                 if (orders.isNotEmpty()) {
                     val intent = Intent(activity, AnimeSearchResultActivity::class.java)
-                    intent.putExtra("action.order.id", orders[position].id)
+                    intent.putExtra("action.order.id", item.id)
                     startActivity(intent)
                 }
             }
         })
-    }
-
-    override fun onErrorGetOrders() {
         viewFragment.contentLoading.gone()
     }
 

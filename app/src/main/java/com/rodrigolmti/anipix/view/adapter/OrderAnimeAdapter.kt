@@ -6,17 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rodrigolmti.anipix.R
+import com.rodrigolmti.anipix.model.dto.OrderDTO
 import kotlinx.android.synthetic.main.row_anime_order.view.*
 
 /**
  * Created by rodrigo on 12/3/17.
  * At Framework System
  */
-class OrderAnimeAdapter(private val context: Context, private val orders: Array<String>,
+class OrderAnimeAdapter(private val context: Context, private val orders: List<OrderDTO>,
                         private val listener: OnItemClick) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as ItemViewHolder).bindData(orders[position], position, listener)
+        (holder as ItemViewHolder).bindData(orders[position], listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
@@ -28,13 +29,13 @@ class OrderAnimeAdapter(private val context: Context, private val orders: Array<
     }
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindData(item: String, position: Int, listener: OnItemClick) {
-            itemView.setOnClickListener { listener.onItemClick(position) }
-            itemView.textViewOrder.text = item
+        fun bindData(item: OrderDTO, listener: OnItemClick) {
+            itemView.setOnClickListener { listener.onItemClick(item) }
+            itemView.textViewOrder.text = item.word
         }
     }
 
     interface OnItemClick {
-        fun onItemClick(position: Int)
+        fun onItemClick(item: OrderDTO)
     }
 }

@@ -1,35 +1,7 @@
 <resources>
     <string name="app_name">Anipix</string>
-    <array name="anime_order">
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>D</item>
-        <item>E</item>
-        <item>F</item>
-        <item>G</item>
-        <item>H</item>
-        <item>I</item>
-        <item>J</item>
-        <item>K</item>
-        <item>L</item>
-        <item>M</item>
-        <item>N</item>
-        <item>O</item>
-        <item>P</item>
-        <item>Q</item>
-        <item>R</item>
-        <item>S</item>
-        <item>T</item>
-        <item>U</item>
-        <item>V</item>
-        <item>W</item>
-        <item>X</item>
-        <item>Y</item>
-        <item>Z</item>
-    </array>
     <!--<string name="base_url">http://67.205.185.235:3001/api/v1/</string>-->
-    <string name="base_url">http://192.168.0.103:3001/api/v1/</string>
+    <string name="base_url">http://192.168.0.100:3001/api/v1/</string>
     <string name="episodio">Episodio:</string>
     <string name="sinopse">Sinopse:</string>
     <string name="ano">Ano:</string>
@@ -38,4 +10,6 @@
     <string name="favoritar">Favoritar</string>
     <string name="desfavoritar">Desfavoritar</string>
     <string name="pesquise_por_aqui">Pesquise por aqui</string>
+    <string name="ad_mob_app_id">ca-app-pub-4643315836358341~3044782230</string>
+    <string name="ad_device_one_plus">6C334C07128AD2DA2B41C5116919CB6F</string>
 </resources>
