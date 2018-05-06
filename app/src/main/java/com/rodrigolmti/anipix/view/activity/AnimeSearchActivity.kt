@@ -2,6 +2,7 @@ package com.rodrigolmti.anipix.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,24 +16,19 @@ import com.rodrigolmti.anipix.model.utils.gone
 import com.rodrigolmti.anipix.model.utils.visible
 import com.rodrigolmti.anipix.view.adapter.AnimeSearchAdapter
 import com.rodrigolmti.library.controller.view.BaseActivity
-import kotlinx.android.synthetic.main.activity_anime_search_result.adView
-import kotlinx.android.synthetic.main.activity_anime_search_result.contentLoading
-import kotlinx.android.synthetic.main.activity_anime_search_result.editTextSearch
-import kotlinx.android.synthetic.main.activity_anime_search_result.imageViewBack
-import kotlinx.android.synthetic.main.activity_anime_search_result.progressBar
-import kotlinx.android.synthetic.main.activity_anime_search_result.recyclerView
-import kotlinx.android.synthetic.main.activity_anime_search_result.toolbar
+import kotlinx.android.synthetic.main.activity_anime_search.*
 import java.util.Timer
 import java.util.TimerTask
-import android.support.design.widget.Snackbar
-import kotlinx.android.synthetic.main.activity_anime_search_result.content
+import kotlin.collections.ArrayList
+import kotlin.collections.List
+import kotlin.collections.MutableList
 
 
 /**
  * Created by rodrigo on 12/3/17.
  * At Framework System
  */
-class AnimeSearchResultActivity : BaseActivity(), CallBackAnime {
+class AnimeSearchActivity : BaseActivity(), CallBackAnime {
 
     private var animesList: MutableList<AnimeDTO> = ArrayList()
     private var timer: Timer = Timer()
@@ -40,15 +36,59 @@ class AnimeSearchResultActivity : BaseActivity(), CallBackAnime {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_anime_search_result)
+        setContentView(R.layout.activity_anime_search)
         setSupportActionBar(toolbar)
         loadData()
+        loadView()
         initAd()
+    }
+
+    override fun onSuccessGetAnimes(animes: List<AnimeDTO>) {
+        contentLoading.gone()
+        progressBar.gone()
+        if (animes.isEmpty()) {
+            Snackbar.make(content, getString(string.no_search_found), Snackbar.LENGTH_LONG).show()
+            textViewNotFound.visible()
+            recyclerView.gone()
+        } else {
+            recyclerView.visible()
+            textViewNotFound.gone()
+            animesList.addAll(animes)
+            recyclerView.adapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun onErrorGetAnimes() {
+        textViewNotFound.visible()
+        progressBar.gone()
+    }
+
+    private fun searchAnimeByNAme(query: String) {
+        timer = Timer()
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                AnipixService().getAnimeByName(this@AnimeSearchActivity, query)
+            }
+        }, delay)
+    }
+
+    private fun loadData() {
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.hasFixedSize()
+        recyclerView.adapter = AnimeSearchAdapter(this, animesList, object : AnimeSearchAdapter.OnItemClick {
+            override fun onItemClick(anime: AnimeDTO) {
+                val intent = Intent(this@AnimeSearchActivity, AnimeDetailActivity::class.java)
+                intent.putExtra("action.item", anime)
+                startActivity(intent)
+            }
+        })
+    }
+
+    private fun loadView() {
         if (intent.hasExtra("action.order.id")) {
             contentLoading.visible()
             kotlin.run {
-                AnipixService(this).getAnimeByOrderId(this,
-                        intent.getStringExtra("action.order.id"))
+                AnipixService().getAnimeByOrderId(this, intent.getStringExtra("action.order.id"))
             }
         }
         imageViewBack.setOnClickListener({ _ ->
@@ -70,43 +110,6 @@ class AnimeSearchResultActivity : BaseActivity(), CallBackAnime {
                     animesList.clear()
                     progressBar.gone()
                 }
-            }
-        })
-    }
-
-    override fun onSuccessGetAnimes(animes: List<AnimeDTO>) {
-        contentLoading.gone()
-        progressBar.gone()
-        if (animes.isEmpty()) {
-            Snackbar.make(content, "Nenhum resultado encontrado!", Snackbar.LENGTH_LONG).show()
-        } else {
-            animesList.addAll(animes)
-            recyclerView.adapter.notifyDataSetChanged()
-        }
-    }
-
-    override fun onErrorGetAnimes() {
-        progressBar.gone()
-    }
-
-    private fun searchAnimeByNAme(query: String) {
-        timer = Timer()
-        timer.schedule(object : TimerTask() {
-            override fun run() {
-                AnipixService(this@AnimeSearchResultActivity).getAnimeByName(
-                        this@AnimeSearchResultActivity, query)
-            }
-        }, delay)
-    }
-
-    private fun loadData() {
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.hasFixedSize()
-        recyclerView.adapter = AnimeSearchAdapter(this, animesList, object : AnimeSearchAdapter.OnItemClick {
-            override fun onItemClick(anime: AnimeDTO) {
-                val intent = Intent(this@AnimeSearchResultActivity, AnimeDetailActivity::class.java)
-                intent.putExtra("action.item", anime)
-                startActivity(intent)
             }
         })
     }

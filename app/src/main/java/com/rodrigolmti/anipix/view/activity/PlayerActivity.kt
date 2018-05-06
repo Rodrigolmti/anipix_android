@@ -1,10 +1,8 @@
 package com.rodrigolmti.anipix.view.activity
 
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import com.halilibo.bettervideoplayer.BetterVideoCallback
 import com.halilibo.bettervideoplayer.BetterVideoPlayer
 import com.rodrigolmti.anipix.R
@@ -14,34 +12,15 @@ import com.rodrigolmti.anipix.model.service.AnipixService
 import com.rodrigolmti.anipix.model.utils.gone
 import com.rodrigolmti.anipix.model.utils.visible
 import com.rodrigolmti.library.controller.view.BaseActivity
-import kotlinx.android.synthetic.main.activity_episode.contentLoading
-import kotlinx.android.synthetic.main.activity_episode.player
+import kotlinx.android.synthetic.main.activity_player.*
 import java.lang.Exception
 
-class EpisodeActivity : BaseActivity(), CallBackEpisodeLink, BetterVideoCallback {
+class PlayerActivity : BaseActivity(), CallBackEpisodeLink, BetterVideoCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        if (Build.VERSION.SDK_INT < 16) {
-            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        } else {
-            val decorView = window.decorView
-            val uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN
-            decorView.systemUiVisibility = uiOptions
-            hideSupportActionBar()
-        }
-
-        setContentView(R.layout.activity_episode)
-        if (intent.hasExtra("action.item.id")) {
-            title = "Episodio: " + intent.getIntExtra("action.item.number", 1)
-            contentLoading.visible()
-            kotlin.run {
-                AnipixService(this).getEpisodeLinkByEpisodeId(this,
-                        intent.getStringExtra("action.item.id"))
-            }
-        }
+        setContentView(R.layout.activity_player)
+        loadView()
     }
 
     override fun onSuccessGetLinks(episode: EpisodeLinkDTO) {
@@ -86,5 +65,22 @@ class EpisodeActivity : BaseActivity(), CallBackEpisodeLink, BetterVideoCallback
     }
 
     override fun onPaused(player: BetterVideoPlayer?) {
+    }
+
+    private fun loadView() {
+        val decorView = window.decorView
+        val uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN
+        decorView.systemUiVisibility = uiOptions
+        hideSupportActionBar()
+
+
+        if (intent.hasExtra("action.item.id")) {
+            title = "Episodio: " + intent.getIntExtra("action.item.number", 1)
+            contentLoading.visible()
+            kotlin.run {
+                AnipixService().getEpisodeLinkByEpisodeId(this,
+                        intent.getStringExtra("action.item.id"))
+            }
+        }
     }
 }

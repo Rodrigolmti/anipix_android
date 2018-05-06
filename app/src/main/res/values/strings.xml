@@ -1,15 +1,27 @@
 <resources>
     <string name="app_name">Anipix</string>
+
     <!--<string name="base_url">http://67.205.185.235:3001/api/v1/</string>-->
-    <string name="base_url">http://192.168.0.100:3001/api/v1/</string>
-    <string name="episodio">Episodio:</string>
-    <string name="sinopse">Sinopse:</string>
-    <string name="ano">Ano:</string>
-    <string name="categorias">Categorias:</string>
-    <string name="selecione_um_player">Selecione um player</string>
-    <string name="favoritar">Favoritar</string>
-    <string name="desfavoritar">Desfavoritar</string>
-    <string name="pesquise_por_aqui">Pesquise por aqui</string>
+    <string name="base_url">http://192.168.0.107:3001/api/v1/</string>
+
     <string name="ad_mob_app_id">ca-app-pub-4643315836358341~3044782230</string>
     <string name="ad_device_one_plus">6C334C07128AD2DA2B41C5116919CB6F</string>
+
+    <string name="episode">Episodio:</string>
+    <string name="synopsis">Sinopse:</string>
+    <string name="ano">Ano:</string>
+    <string name="category">Categorias:</string>
+    <string name="select_one_player">Selecione um player</string>
+    <string name="favorite">Favoritar</string>
+    <string name="unfavorite">Desfavoritar</string>
+    <string name="search_here">Pesquise por aqui</string>
+    <string name="updates">Atualizações</string>
+    <string name="animes_a_to_z">Animes de A-Z</string>
+    <string name="favorite_animes">Animes favoritos</string>
+    <string name="infos">Informações Anipix</string>
+    <string name="no_search_found">Nenhum resultado encontrado!</string>
+    <string name="not_found_message">Well, looks like there is no anime with that name, try something different! ;(</string>
+    <string name="empty_message">Oh looks like you don\'t have favorite animes, try add some and come back. :D</string>
+
+
 </resources>

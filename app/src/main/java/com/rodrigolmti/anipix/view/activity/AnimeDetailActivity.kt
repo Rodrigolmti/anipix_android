@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
@@ -26,13 +27,13 @@ import kotlinx.android.synthetic.main.activity_anime_detail.textViewAno
 import kotlinx.android.synthetic.main.activity_anime_detail.textViewCategorias
 import kotlinx.android.synthetic.main.activity_anime_detail.textViewSinopse
 import kotlinx.android.synthetic.main.activity_anime_detail.toolbar
-import kotlinx.android.synthetic.main.activity_anime_search_result.adView
+import kotlinx.android.synthetic.main.activity_anime_search.adView
 
 /**
  * Created by rodrigo on 12/3/17.
  * At Framework System
  */
-    class AnimeDetailActivity : BaseActivity(), CallBackEpisode {
+class AnimeDetailActivity : BaseActivity(), CallBackEpisode {
 
     private lateinit var anime: AnimeDTO
     private var menu: Menu? = null
@@ -42,48 +43,41 @@ import kotlinx.android.synthetic.main.activity_anime_search_result.adView
         setContentView(R.layout.activity_anime_detail)
         setSupportActionBar(toolbar)
         enableBackButton()
+        loadView()
         initAd()
-        if (intent.hasExtra("action.item")) {
-            anime = intent.getSerializableExtra("action.item") as AnimeDTO
-            imageViewAnime.setImageURI(Uri.parse(anime.imagem))
-            anime.favorite = FavoriteController.onCheckIsFavorite(anime)
-            title = anime.nome
-            textViewSinopse.text = anime.sinopse
-                    .replace("Sinopse: ", "")
-            textViewAno.text = anime.ano
-            textViewCategorias.text = anime.categorias
-            contentLoading.visible()
-            kotlin.run {
-                AnipixService(this).getEpisodeByAnimeId(this, anime.id)
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_activity_anime_detail_favorite, menu)
+        onChangeAnimeFavorite(menu!!.findItem(R.id.menu_favorite))
         this.menu = menu
-        if (anime.favorite) {
-            menuInflater.inflate(R.menu.menu_activity_anime_detail_unfavorite, menu)
-        } else {
-            menuInflater.inflate(R.menu.menu_activity_anime_detail_favorite, menu)
-        }
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.menu_favorite -> {
-                menu!!.clear()
-                menuInflater.inflate(R.menu.menu_activity_anime_detail_unfavorite, menu)
-                FavoriteController.onAddFavorite(anime)
-            }
-            R.id.menu_un_favorite -> {
-                menu!!.clear()
-                menuInflater.inflate(R.menu.menu_activity_anime_detail_favorite, menu)
-                FavoriteController.onRemoveFavorite(anime)
+                if (FavoriteController.onCheckIsFavorite(anime)) {
+                    item.icon = ContextCompat.getDrawable(this, R.drawable.ic_action_favorite)
+                    FavoriteController.onRemoveFavorite(anime)
+                } else {
+                    item.icon = ContextCompat.getDrawable(this, R.drawable.ic_action_favorite_ativated)
+                    FavoriteController.onAddFavorite(anime)
+                }
             }
             android.R.id.home -> finish()
         }
         return true
+    }
+
+    private fun onChangeAnimeFavorite(item: MenuItem) {
+        if (!FavoriteController.onCheckIsFavorite(anime)) {
+            item.icon = ContextCompat.getDrawable(this, R.drawable.ic_action_favorite)
+            FavoriteController.onRemoveFavorite(anime)
+        } else {
+            item.icon = ContextCompat.getDrawable(this, R.drawable.ic_action_favorite_ativated)
+            FavoriteController.onAddFavorite(anime)
+        }
     }
 
     override fun onSuccessGetEpisodes(episodes: List<EpisodeDTO>) {
@@ -92,11 +86,11 @@ import kotlinx.android.synthetic.main.activity_anime_search_result.adView
         recyclerView.hasFixedSize()
         recyclerView.adapter = EpisodeAdapter(this, episodes, object : EpisodeAdapter.OnItemClick {
             override fun onItemClick(episode: EpisodeDTO) {
-                val options = arrayOf<CharSequence>("Link 1", "Link2")
+                val options = arrayOf<CharSequence>("Player 1", "Player 2")
                 val builder = AlertDialog.Builder(this@AnimeDetailActivity)
-                builder.setTitle(getString(string.selecione_um_player))
+                builder.setTitle(getString(string.select_one_player))
                 builder.setItems(options, { _, index ->
-                    val intent = Intent(this@AnimeDetailActivity, EpisodeActivity::class.java)
+                    val intent = Intent(this@AnimeDetailActivity, PlayerActivity::class.java)
                     intent.putExtra("action.item.number", episode.numero)
                     intent.putExtra("action.item.id", episode.id)
                     intent.putExtra("action.item.link", index)
@@ -108,6 +102,24 @@ import kotlinx.android.synthetic.main.activity_anime_search_result.adView
     }
 
     override fun onErrorGetEpisodes() {
+    }
+
+    private fun loadView() {
+        if (intent.hasExtra("action.item")) {
+            anime = intent.getSerializableExtra("action.item") as AnimeDTO
+            imageViewAnime.setImageURI(Uri.parse(anime.imagem))
+            anime.favorite = FavoriteController.onCheckIsFavorite(anime)
+            title = anime.nome
+            if (anime.sinopse != null && !anime.sinopse.isEmpty()) {
+                textViewSinopse.text = anime.sinopse.replace("Sinopse: ", "")
+            }
+            textViewAno.text = anime.ano
+            textViewCategorias.text = anime.categorias
+            contentLoading.visible()
+            kotlin.run {
+                AnipixService().getEpisodeByAnimeId(this, anime.id)
+            }
+        }
     }
 
     private fun initAd() {

@@ -6,6 +6,17 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent" />
+        android:background="@color/colorAccent"/>
+
+    <TextView
+        android:id="@+id/textViewEmpty"
+        android:layout_width="wrap_content"
+        style="@style/FontMedium"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/empty_message"
+        android:visibility="gone"/>
 
 </RelativeLayout>

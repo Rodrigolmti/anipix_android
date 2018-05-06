@@ -10,15 +10,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.rodrigolmti.anipix.view.custom.TextViewRegular
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/FontMedium"
             android:layout_margin="16dp"
-            android:text="@string/episodio"
+            android:text="@string/episode"
             android:textSize="16sp" />
 
-        <com.rodrigolmti.anipix.view.custom.TextViewMedium
+        <TextView
             android:id="@+id/textViewEpisodeNumber"
+            style="@style/FontLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

@@ -4,15 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.halilibo.bettervideoplayer.BetterVideoPlayer xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.halilibo.bettervideoplayer.BetterVideoPlayer
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/player"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:bvp_autoPlay="true" />
+        app:bvp_autoPlay="true"/>
 
     <include
         android:id="@+id/contentLoading"
         layout="@layout/layout_loading"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
 </RelativeLayout>

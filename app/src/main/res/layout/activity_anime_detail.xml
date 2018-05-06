@@ -24,14 +24,14 @@
                 android:layout_height="300dp"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="parallax"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"/>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -50,79 +50,84 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.rodrigolmti.anipix.view.custom.TextViewBold
+            <TextView
+                style="@style/FontMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/sinopse"
-                android:textSize="18sp" />
+                android:text="@string/synopsis"
+                android:textSize="18sp"/>
 
-            <com.rodrigolmti.anipix.view.custom.TextViewRegular
+            <TextView
                 android:id="@+id/textViewSinopse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                tools:text="Ola este anime e um anime muito animado de animacao animada" />
+                tools:text="Ola este anime e um anime muito animado de animacao animada"/>
 
-            <com.rodrigolmti.anipix.view.custom.TextViewBold
+            <TextView
+                style="@style/FontMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
                 android:text="@string/ano"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
 
-            <com.rodrigolmti.anipix.view.custom.TextViewRegular
+            <TextView
                 android:id="@+id/textViewAno"
+                style="@style/FontLight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                tools:text="2002" />
+                tools:text="2002"/>
 
-            <com.rodrigolmti.anipix.view.custom.TextViewBold
+            <TextView
+                style="@style/FontMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/categorias"
-                android:textSize="18sp" />
+                android:text="@string/category"
+                android:textSize="18sp"/>
 
-            <com.rodrigolmti.anipix.view.custom.TextViewRegular
+            <TextView
                 android:id="@+id/textViewCategorias"
+                style="@style/FontLight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                tools:text="Comedia, Shoot, Açåo, Tiro, Tiro" />
+                tools:text="Comedia, Shoot, Açåo, Tiro, Tiro"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="100dp"
                 android:layout_marginTop="10dp"
-                android:nestedScrollingEnabled="false" />
+                android:layout_marginBottom="100dp"
+                android:nestedScrollingEnabled="false"/>
 
         </LinearLayout>
 
@@ -136,11 +141,11 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-4643315836358341/4697555504" />
+        ads:adUnitId="ca-app-pub-4643315836358341/4697555504"/>
 
     <include
         android:id="@+id/contentLoading"
         layout="@layout/layout_loading"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>

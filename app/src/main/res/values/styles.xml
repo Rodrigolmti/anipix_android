@@ -5,15 +5,37 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textViewStyle">@style/FontRegular</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppThemeNoBar" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textViewStyle">@style/FontRegular</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="FontBlack" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/montserrat_black</item>
+    </style>
+
+    <style name="FontBold" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="FontMedium" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="FontLight" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/montserrat_light</item>
+    </style>
+
+    <style name="FontRegular" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>
 
 </resources>

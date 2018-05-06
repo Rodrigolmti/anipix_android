@@ -7,6 +7,7 @@ import com.rodrigolmti.anipix.model.dto.AnimeDTO
  * At Framework System
  */
 interface CallBackAnime {
+
     fun onSuccessGetAnimes(animes: List<AnimeDTO>)
     fun onErrorGetAnimes()
 }

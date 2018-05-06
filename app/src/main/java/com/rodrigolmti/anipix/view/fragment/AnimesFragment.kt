@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rodrigolmti.anipix.R
-import com.rodrigolmti.anipix.model.dto.OrderDTO
-import com.rodrigolmti.anipix.model.service.AnipixService
 import com.rodrigolmti.anipix.model.callback.CallBackOrder
 import com.rodrigolmti.anipix.model.dao.OrderDAO
+import com.rodrigolmti.anipix.model.dto.OrderDTO
+import com.rodrigolmti.anipix.model.service.AnipixService
 import com.rodrigolmti.anipix.model.utils.gone
 import com.rodrigolmti.anipix.model.utils.visible
-import com.rodrigolmti.anipix.view.activity.AnimeSearchResultActivity
+import com.rodrigolmti.anipix.view.activity.AnimeSearchActivity
 import com.rodrigolmti.anipix.view.adapter.OrderAnimeAdapter
 import com.rodrigolmti.anipix.view.adapter.OrderAnimeAdapter.OnItemClick
 import com.rodrigolmti.library.controller.view.BaseFragment
@@ -29,17 +29,17 @@ class AnimesFragment : BaseFragment(), CallBackOrder {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewFragment = inflater!!.inflate(R.layout.fragment_animes, container, false)
+        return viewFragment
+    }
 
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewFragment.contentLoading.visible()
         if (OrderDAO.getOrders().isEmpty()) {
-            kotlin.run {
-                AnipixService(activity).getOrderList(this)
-            }
+            AnipixService().getOrderList(this)
         } else {
             loadData(OrderDAO.getOrders())
         }
-
-        return viewFragment
     }
 
     override fun onSuccessGetOrders(orders: List<OrderDTO>) {
@@ -57,7 +57,7 @@ class AnimesFragment : BaseFragment(), CallBackOrder {
         viewFragment.recyclerView.adapter = OrderAnimeAdapter(activity, orders, object : OnItemClick {
             override fun onItemClick(item: OrderDTO) {
                 if (orders.isNotEmpty()) {
-                    val intent = Intent(activity, AnimeSearchResultActivity::class.java)
+                    val intent = Intent(activity, AnimeSearchActivity::class.java)
                     intent.putExtra("action.order.id", item.id)
                     startActivity(intent)
                 }

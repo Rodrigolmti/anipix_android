@@ -5,18 +5,19 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.rodrigolmti.anipix.view.custom.TextViewRegular
+    <TextView
         android:id="@+id/textViewOrder"
+        style="@style/FontMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:textAllCaps="true"
         android:textSize="16sp"
-        tools:text="A" />
+        tools:text="A"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/silver" />
+        android:background="@color/silver"/>
 
 </LinearLayout>

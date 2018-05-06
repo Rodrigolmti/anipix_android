@@ -2,9 +2,9 @@ package com.rodrigolmti.anipix.model.controller
 
 import android.content.Context
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.rodrigolmti.anipix.model.`interface`.IFavoriteController
 import com.rodrigolmti.anipix.model.dto.AnimeDTO
-import com.google.gson.reflect.TypeToken
 
 
 /**
@@ -43,7 +43,7 @@ class FavoriteController {
             return favorites.indices.any { favorites[it].id == animeDTO.id }
         }
 
-        override fun onSearchFavorites(): List<AnimeDTO> {
+        override fun onSearchFavorites(): MutableList<AnimeDTO> {
             return favorites
         }
 
